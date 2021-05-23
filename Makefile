@@ -25,6 +25,9 @@ clean:
 $(BUILD_DIR)/main: $(SOURCES)
 	$(CC) $(CFLAGS) -o $@ $(SOURCES)
 
+flash: $(BUILD_DIR)/main
+	avrdude -F -p m8515 -c usbasp -U flash:w:$(BUILD_DIR)/main
+
 all: $(BUILD_DIR)/main
 
 .DEFAULT_GOAL := all
