@@ -1,8 +1,8 @@
 BUILD_DIR=build
 C_SOURCES=$(wildcard $(dir)/*.c)
-CFLAGS=-Isrc -Os -mmcu=atmega8515
+CFLAGS=-Isrc -Ithird_party/yaMBSiavr -Os -mmcu=atmega8515 -DF_CPU=7372800UL
 
-MAIN_SOURCES=src/main.c
+MAIN_SOURCES=src/main.c third_party/yaMBSiavr/yaMBSiavr.c
 MAIN_OBJECTS=$(foreach src,$(notdir $(MAIN_SOURCES)),$(patsubst %.c,%.c.o,$(BUILD_DIR)/$(src)))
 
 SOURCES=$(MAIN_SOURCES)
